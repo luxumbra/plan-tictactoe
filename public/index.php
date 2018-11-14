@@ -129,7 +129,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$view_folder = '/var/www/public/views';
+	$view_folder = '';
 
 
 /*
