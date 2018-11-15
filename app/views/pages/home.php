@@ -38,7 +38,7 @@
           </ul>
         </div>
         <div id="board" data-board>
-          <div id="grid" class="d-flex flex-wrap flex-row justify-content-center mx-auto" data-grid>
+          <div id="grid" data-grid>
             <div class="item item1"></div>
             <div class="item item2" data-played="player1"></div>
             <div class="item item3"></div>

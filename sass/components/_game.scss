@@ -4,8 +4,13 @@
     background-color: rgba($color: black, $alpha: 0.2);
     height: 30rem;
     width: 30rem;
+    margin: 0 auto;
 
     #grid {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: center;
       height: 100%;
       width: 100%;
       .item {

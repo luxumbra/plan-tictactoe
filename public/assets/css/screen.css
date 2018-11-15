@@ -7,13 +7,18 @@
   background-color: rgba(0, 0, 0, 0.2);
   height: 30rem;
   width: 30rem;
+  margin: 0 auto;
 }
-/* line 8, ../../../sass/components/_game.scss */
+/* line 9, ../../../sass/components/_game.scss */
 .game-container #board #grid {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
   height: 100%;
   width: 100%;
 }
-/* line 11, ../../../sass/components/_game.scss */
+/* line 16, ../../../sass/components/_game.scss */
 .game-container #board #grid .item {
   border: 1px solid rgba(0, 0, 0, 0.6);
   height: 100%;
@@ -22,15 +27,15 @@
   max-width: 33%;
   transition: background 0.5s ease-in-out;
 }
-/* line 19, ../../../sass/components/_game.scss */
+/* line 24, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:hover {
   background: rgba(255, 255, 255, 0.6);
 }
-/* line 22, ../../../sass/components/_game.scss */
+/* line 27, ../../../sass/components/_game.scss */
 .game-container #board #grid .item[data-played] {
   background: rgba(255, 255, 255, 0.8);
 }
-/* line 25, ../../../sass/components/_game.scss */
+/* line 30, ../../../sass/components/_game.scss */
 .game-container #board #grid .item[data-played]:hover {
   background: rgba(255, 255, 255, 0.8);
 }
