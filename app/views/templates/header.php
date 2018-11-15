@@ -20,7 +20,7 @@
   <header class="container">
     <div class="row">
       <div class="col col-10 mx-auto">
-        <h1><?php echo $title; ?></h1>
+        <h1>tictactoe.plan.com</h1>
       </div>
     </div>
   </header>

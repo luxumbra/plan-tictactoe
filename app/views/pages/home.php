@@ -1,12 +1,12 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col col-10 mx-auto">
-      <p>Homepage</p>
+      <p>Welcome</p>
     </div>
   </div>
   <div class="row">
-    <div class="col col-12 col-lg-8">
-      <h2>Game board</h2>
+    <div class="col col-12 col-md-6 mx-auto">
+      <h2>Play Tic Tac Toe</h2>
 
       <div id="game" class="game-container" data-game>
         <div class="player-info">
@@ -53,7 +53,18 @@
       </div>
     </div>
     <div class="col col-12 col-lg-4">
-      <h3>Game info</h3>
+      <div class="game-info current-game">
+        <h3>Current game info</h3>
+        <ul>
+          <li>Player 1: Name (x)</li>
+          <li>Player 2: Name (o)</li>
+          <li>Moves made: 0</li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="previous-games"></div>
+
     </div>
   </div>
 </div>
