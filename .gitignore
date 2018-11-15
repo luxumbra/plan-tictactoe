@@ -1,3 +1,4 @@
+node_modules
 */config/development
 */logs/log-*.php
 !*/logs/index.html
@@ -5,6 +6,9 @@
 !*/cache/index.html
 !*/cache/.htaccess
 .vagrant
+phpmyadmin
+.vscode
+.sass-cache
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*

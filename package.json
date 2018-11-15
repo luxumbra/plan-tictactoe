@@ -1,0 +1,22 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/assets/js/game.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luxumbra/plan-tictactoe.git"
+  },
+  "author": "Dave",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luxumbra/plan-tictactoe/issues"
+  },
+  "homepage": "https://github.com/luxumbra/plan-tictactoe#readme",
+  "dependencies": {
+    "eslint": "^5.9.0"
+  }
+}
