@@ -11,6 +11,7 @@
       <div id="game" class="game-container" data-game>
         <div class="player-info">
           <form id="playerData" onsubmit=startGame();>
+            <input type="hidden" value="<?php echo base_url(); ?>" id="baseurl"/>
             <div class="form-row">
               <div class="form-group col col-lg-6">
                 <label for="p1Name">Player 1 name</label><input type="text" id="p1Name" class="form-control">
