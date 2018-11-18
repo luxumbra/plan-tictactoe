@@ -4,6 +4,7 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 // @import "compass/reset";
-@import "variables/variables";
-@import "functions/game";
-@import "components/_game.scss";
+@import "variables/_variables";
+@import "functions/_game";
+@import "components/_page";
+@import "components/_game";

@@ -2,6 +2,16 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 1, ../../../sass/components/_page.scss */
+body {
+  background-image: radial-gradient(circle, #405d62 1%, #2e4347 100%);
+  color: white;
+}
+/* line 5, ../../../sass/components/_page.scss */
+body .wrapper {
+  box-shadow: 0 0 15rem rgba(0, 0, 0, 0.4) inset;
+}
+
 /* line 3, ../../../sass/components/_game.scss */
 .game-container #board {
   background-color: rgba(0, 0, 0, 0.2);
@@ -32,10 +42,10 @@
   background: rgba(255, 255, 255, 0.6);
 }
 /* line 27, ../../../sass/components/_game.scss */
-.game-container #board #grid .item[data-played] {
-  background: rgba(255, 255, 255, 0.8);
+.game-container #board #grid .item.player1, .game-container #board #grid .item.player2 {
+  background: rgba(0, 0, 0, 0.8);
 }
 /* line 30, ../../../sass/components/_game.scss */
-.game-container #board #grid .item[data-played]:hover {
+.game-container #board #grid .item.player1:hover, .game-container #board #grid .item.player2:hover {
   background: rgba(255, 255, 255, 0.8);
 }

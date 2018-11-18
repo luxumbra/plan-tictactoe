@@ -18,13 +18,19 @@
  * --> in the game column, show player data for both players (games won,etc)
 
 */
-
+const playerForm = document.getElementById('playerData');
+var winners = new Array();
+var player1Selections = new Array();
+var player2Selections = new Array();
+var timer;
 var numberOfPlayers = 2;
 var currentPlayer = 0;
 var move = 0;
 var points1 = 0;
 var points2 = 0;
 var size = 3;
+var created = false;
+
 
 var players = {
   player1: {
@@ -48,7 +54,6 @@ var game = {
   gameStarted: '', // datetime
   gameEnded: '', // datetime
   gameWinner: '', // player email
-
 }
 
 // const gameContainer = document.getElementById('game');
@@ -56,64 +61,190 @@ var game = {
 // const grid = document.getElementById('grid');
 // const gridItems = document.getElementsByClassName('item');
 
-function drawBoard() {
+function gamePlay(p1Name, p2Name) {
+  // event.preventDefault();
   const gameContainer = document.getElementById('game');
   const board = document.getElementById('board');
   const grid = document.getElementById('grid');
   const gridItems = document.getElementsByClassName('item');
+  const p1 = document.getElementById('p1-name');
+  const p2 = document.getElementById('p2-name');
+  console.log(p1, p2);
+
+  p1.innerHTML = p1Name;
+  p2.innerHTML = p2Name;
+
+  let counter = 1;
+  let itemId = 1;
+  const gridCount = gridItems.length;
+  console.log(gridItems);
+
+  for(i = 0; i < gridCount; i++) {
+    let item = document.getElementById(itemId);
+
+    let handler = function (e) {
+      console.log('Item: ', item);
+      if (currentPlayer == 0) {
+        item.innerHTML = 'X';
+        item.classList.add('played', 'player1');
+        player1Selections.push(parseInt(item.dataset.boardPos));
+        player1Selections.sort((a, b) => { return a - b });
+      } else {
+        item.innerHTML = 'O';
+        item.classList.add('played', 'player2');
+        player2Selections.push(parseInt(item.dataset.boardPos));
+        player2Selections.sort((a, b) => { return a - b });
+      }
+      move++;
+      console.log('P1: ', player1Selections, 'P2', player2Selections);
+
+      var isWin = checkWinner();
+
+      if (isWin) {
+        if (currentPlayer == 0) {
+          console.log('Player 1 wins!');
+          for(i = 0; i < gridItems.length; i++) {
+            item.removeEventListener('click', handler);
+          }
+          points1++;
+        } else {
+          console.log('Player 2 wins!');
+          for (i = 0; i < gridItems.length; i++) {
+            item.removeEventListener('click', handler);
+          }
+
+          points2++;
+        }
+        document.getElementById('p1-score').innerHTML = 'Wins: ' + points1;
+        document.getElementById('p2-score').innerHTML = 'Wins: ' + points2;
+        reset();
+
+      } else {
+        if (currentPlayer == 0) {
+          currentPlayer = 1;
+          item.removeEventListener('click', handler);
+        } else {
+          currentPlayer = 0;
+          item.removeEventListener('click', handler);
+        }
+      }
+    }
+    // console.log(item);
+
+    item.addEventListener('click', handler);
+    counter++;
+    itemId++;
+  }
+
+  winningCombinations();
 }
 
-// function createPlayers() {
-//   console.log('Players: ',players);
-//   let p1Name = prompt('Player 1 please enter your name...');
-//   let p1Email = prompt('Player 1 enter your email address (this will never be used outside of this application!)');
-//   let p1GameIcon = prompt('Player 1 enter your game piece (o or x)');
+function reset() {
+  let reset = false;
+  currentPlayer = 0;
+  console.log('Selections: ', player1Selections, player2Selections);
+  // console.log(player1Selections.length + player2Selections.length);
+  var itemsToClean = document.querySelectorAll('.item');
 
-//   players = {
-//     player1: {
-//       name: p1Name,
-//       email: p1Email,
-//       gameIcon: p1GameIcon
-//     }
-//   }
-//   if(players.player1.name === '') {
-//     console.log('start again');
-//     return false;
-//   }
-//   let p2Name = prompt('Player 2 please enter your name...');
-//   let p2Email = prompt('Player 2 enter your email address (this will never be used outside of this application!)');
-//   let p2GameIcon = 'o';
-//   if(players.player1.gameIcon === 'o'){
-//     p2GameIcon = 'x';
-//   }
+  console.log('To clean: ', itemsToClean);
 
-//   players = {
-//     ...players,
-//     player2: {
-//       name: p2Name,
-//       email: p2Email,
-//       gameIcon: p2GameIcon
-//     }
-//   }
-//   const player1 = players.player1;
-//   const player2 = players.player2;
-//   game = {
-//     ...game,
-//     players: {
-//       p1: player1.email,
-//       p2: player2.email,
-//     }
-//   }
+  [].forEach.call(itemsToClean, (item) => {
+    console.log('Item: ', item.classList);
 
-//   console.log(players, game);
+    item.classList.remove('played', 'player1', 'player2');
+    // item.classList.remove('.played.player2');
+    item.innerHTML = '';
+    item.removeEventListener('click', handler);
+  });
+  player1Selections = new Array();
+  player2Selections = new Array();
+  // for(i = 0)
+  console.log('P1 selections: ', player1Selections);
 
-//   return players, game;
-// }
+  // document.getElementsByClassName('item').classList.remove(!'item');
+  return reset;
+}
 
-// function startGame(players, game) {
-//   console.log(players, game);
+function winningCombinations() {
+  winners.push([1, 2, 3]);
+  winners.push([4, 5, 6]);
+  winners.push([7, 8, 9]);
+  winners.push([1, 5, 9]);
+  winners.push([3, 5, 7]);
+  winners.push([1, 4, 7]);
+  winners.push([2, 5, 8]);
+  winners.push([3, 6, 9]);
+}
 
-// }
-// if(game.players.p1 && game.players.p2){
-//   startGame('Start game: ', players, game);
-// }
+checkWinner = () => {
+  var win = false;
+  var playerSelections = new Array();
+
+  if(currentPlayer == 0) {
+    playerSelections = player1Selections;
+  } else {
+    playerSelections = player2Selections;
+  }
+
+  if(playerSelections.length >- size) {
+    // check players selections against the winners array...
+    for(i = 0; i < winners.length; i++) {
+      var sets = winners[i]; //winning combo
+      var setFound = true;
+
+      for(r = 0; r < sets.length; r++) {
+        var found = false;
+
+        for(s = 0; s < playerSelections.length; s++) {
+          if(sets[r] == playerSelections[s]) {
+            found = true;
+            break;
+          }
+        }
+        if(found == false) {
+          setFound = false;
+          break;
+        }
+      }
+      if(setFound == true) {
+        win = true;
+        break;
+      }
+    }
+  }
+  return win;
+}
+createPlayers = (players) => {
+
+  // var gamePlayers = this.players;
+  console.log('Players: ', players);
+  // playerForm.addEventListener('submit', (e) => {
+    // e.preventDefault();
+    // const fd = e.target;
+
+    if (playerForm) {
+      players.player1.name = document.getElementById('p1Name').value;
+      players.player1.email = document.getElementById('p1Email').value;
+      players.player2.name = document.getElementById('p2Name').value;
+      players.player2.email = document.getElementById('p2Email').value;
+    }
+    players = players;
+    console.log('Created players:', players);
+    created = true;
+    // debugger;
+    return created;
+  // });
+
+}
+
+function startGame() {
+  event.preventDefault();
+  createPlayers(players);
+  console.log('The players: ', players);
+
+  if(created === true) {
+    gamePlay(players.player1.name, players.player2.name);
+    console.log('Game started...');
+
+  }
+}

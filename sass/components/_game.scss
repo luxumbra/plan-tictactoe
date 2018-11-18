@@ -24,8 +24,8 @@
         &:hover {
           background: rgba($color: white, $alpha: 0.6)
         }
-        &[data-played] {
-          background: rgba($color: white, $alpha: 0.8);
+        &.player1, &.player2 {
+          background: rgba($color: black, $alpha: 0.8);
 
           &:hover {
             background: rgba($color: white, $alpha: 0.8);

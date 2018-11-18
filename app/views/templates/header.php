@@ -10,18 +10,18 @@
 
 </head>
 <body>
-  <div class="nav-bar">
-    <div class="nav">
-      <a href="" class="nav-link home">Home</a>
-      <a href="" class="nav-link about">About</a>
-      <a href="" class="nav-link game">Game</a>
-    </div>
-  </div>
-  <header class="container">
-    <div class="row">
-      <div class="col col-10 mx-auto">
-        <h1>tictactoe.plan.com</h1>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <div class="nav">
+        <a href="" class="nav-link home">Home</a>
+        <a href="" class="nav-link about">About</a>
+        <a href="" class="nav-link game">Game</a>
       </div>
     </div>
-  </header>
-
+    <header class="container">
+      <div class="row">
+        <div class="col col-10 mx-auto">
+          <h1>tictactoe.plan.com</h1>
+        </div>
+      </div>
+    </header>
