@@ -144,6 +144,7 @@ function gamePlay(p1Name, p2Name) {
           }
           game.gameWinner = players.player1.email;
           points1++;
+          alert('Player 1 wins!');
         } else {
           // console.log('Player 2 wins!');
           for (i = 0; i < gridItems.length; i++) {
@@ -151,6 +152,7 @@ function gamePlay(p1Name, p2Name) {
           }
           game.gameWinner = players.player2.email;
           points2++;
+          alert('Player 2 wins!');
         }
         document.getElementById('p1-score').innerHTML = 'Wins: ' + points1;
         document.getElementById('p2-score').innerHTML = 'Wins: ' + points2;
