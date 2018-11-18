@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/luxumbra/plan-tictactoe#readme",
   "dependencies": {
-    "eslint": "^5.9.0"
+
   }
 }

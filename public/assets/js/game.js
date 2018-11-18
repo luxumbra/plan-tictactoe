@@ -61,6 +61,39 @@ var game = {
 // const grid = document.getElementById('grid');
 // const gridItems = document.getElementsByClassName('item');
 
+function processForCI(game) {
+  var base_url = document.getElementById('baseurl').value;
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('POST', base_url+'/game/addGame');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if(xhr.status === 200 && xhr.responseText !== game) {
+      console.log('Something went wrong... Game is: ', xhr.responseText);
+    } else if(xhr.status !== 200) {
+      console.log('Request failed. Returned status: ' + xhr.status);
+
+    }
+  }
+  function param(game) {
+    console.log(game);
+
+    var encodedString = '';
+    for (var prop in game) {
+      if (object.hasOwnProperty(prop)) {
+        if (encodedString.length > 0) {
+          encodedString += '&';
+        }
+        encodedString += encodeURI(prop + '=' + game[prop]);
+        console.log(encodedString);
+      }
+    }
+    debugger;
+    return encodedString;
+  }
+  // xhr.send(encodeURI(encodedString));
+}
+
 function gamePlay(p1Name, p2Name) {
   // event.preventDefault();
   const gameContainer = document.getElementById('game');
@@ -77,13 +110,12 @@ function gamePlay(p1Name, p2Name) {
   let counter = 1;
   let itemId = 1;
   const gridCount = gridItems.length;
-  console.log(gridItems);
 
   for(i = 0; i < gridCount; i++) {
     let item = document.getElementById(itemId);
 
     let handler = function (e) {
-      console.log('Item: ', item);
+
       if (currentPlayer == 0) {
         item.innerHTML = 'X';
         item.classList.add('played', 'player1');
@@ -96,27 +128,36 @@ function gamePlay(p1Name, p2Name) {
         player2Selections.sort((a, b) => { return a - b });
       }
       move++;
-      console.log('P1: ', player1Selections, 'P2', player2Selections);
+      // console.log('P1: ', player1Selections, 'P2', player2Selections);
 
       var isWin = checkWinner();
 
       if (isWin) {
+        let endTime = new Date();
+        game.gameEnded = endTime;
+
         if (currentPlayer == 0) {
-          console.log('Player 1 wins!');
+          // console.log('Player 1 wins!');
+
           for(i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
+          game.gameWinner = players.player1.email;
           points1++;
         } else {
-          console.log('Player 2 wins!');
+          // console.log('Player 2 wins!');
           for (i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
-
+          game.gameWinner = players.player2.email;
           points2++;
         }
         document.getElementById('p1-score').innerHTML = 'Wins: ' + points1;
         document.getElementById('p2-score').innerHTML = 'Wins: ' + points2;
+        // console.log(game);
+
+        // send game object to php for adding to the db.
+        processForCI(game);
         reset();
 
       } else {
@@ -142,26 +183,25 @@ function gamePlay(p1Name, p2Name) {
 function reset() {
   let reset = false;
   currentPlayer = 0;
-  console.log('Selections: ', player1Selections, player2Selections);
-  // console.log(player1Selections.length + player2Selections.length);
   var itemsToClean = document.querySelectorAll('.item');
 
-  console.log('To clean: ', itemsToClean);
+  // console.log('To clean: ', itemsToClean);
 
   [].forEach.call(itemsToClean, (item) => {
-    console.log('Item: ', item.classList);
 
     item.classList.remove('played', 'player1', 'player2');
     // item.classList.remove('.played.player2');
     item.innerHTML = '';
-    item.removeEventListener('click', handler);
+
+    item.removeEventListener('click', this.handler);
+
   });
+
   player1Selections = new Array();
   player2Selections = new Array();
-  // for(i = 0)
-  console.log('P1 selections: ', player1Selections);
-
-  // document.getElementsByClassName('item').classList.remove(!'item');
+  if(player1Selections.length == 0 && player2Selections.length == 0) {
+    reset = true;
+  }
   return reset;
 }
 
@@ -216,11 +256,7 @@ checkWinner = () => {
 }
 createPlayers = (players) => {
 
-  // var gamePlayers = this.players;
   console.log('Players: ', players);
-  // playerForm.addEventListener('submit', (e) => {
-    // e.preventDefault();
-    // const fd = e.target;
 
     if (playerForm) {
       players.player1.name = document.getElementById('p1Name').value;
@@ -228,12 +264,20 @@ createPlayers = (players) => {
       players.player2.name = document.getElementById('p2Name').value;
       players.player2.email = document.getElementById('p2Email').value;
     }
-    players = players;
-    console.log('Created players:', players);
+
+    let startTime = new Date();
+    game = {
+      players: {
+        p1: players.player1.email,
+        p2: players.player2.email,
+      },
+      gameStarted: startTime,
+    }
+
     created = true;
     // debugger;
     return created;
-  // });
+
 
 }
 

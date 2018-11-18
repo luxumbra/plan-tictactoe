@@ -1,5 +1,6 @@
 # plan-tictactoe
 
+## The brief
 * Take a name for the two players and begin a new game.
 * Use basic styling for the grid using css.
 * Allow the players to click the grid to make their move, and highlight when the game is finished.
@@ -9,8 +10,7 @@
 * On desktop browser have the results of the last 5 matches on the right hand side ? do this in bootstrap, not php.
 * If you have more time, then please look at making an option of playing against the computer.
 
-## thoughts
-
+## Initial thoughts
  * Prompt players for their first names and email addresses (email address to be used to check if they've played before) and select their game symbol (o or x).
  * --> Store player info in a players object which can be passed to state and later added to the players table.
  * User selects 'start game'.
@@ -25,5 +25,16 @@
  * --> once saved to the db, use the response to update the game column on the main page
  * --> in the game column, show player data for both players (games won,etc)
 
- ## outline
- 
+ ## Set up
+ * Clone the repository to your local machine
+ * cd into the project directory
+ * Ensure you have VirtualBox and Vagrant installed on your system
+ * Run `vagrant up`
+ * ssh into the vagrant box with `vagrant ssh` from your command line
+ * use the game.sql file to create the required `game` table on the `scotchbox` db
+ * Visit http://192.168.33.10/index.php/pages/view/home in your browser to play the game.
+
+ ### Issues
+ * I did not manage to finish setting up the game to add game results to the database. As a result, game history in the right hand column is not present.
+ * I also wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
+ * The game works but doesn't reset fully as event listeners are not getting removed from the squares, that have not been played, in the game grid and thus, a player can still select these. However, the game isWon, so this doesn't affect the results.
