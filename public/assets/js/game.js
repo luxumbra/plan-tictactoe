@@ -101,22 +101,31 @@ function gamePlay(p1Name, p2Name) {
       var isWin = checkWinner();
 
       if (isWin) {
+        let endTime = new Date();
+        game.gameEnded = endTime;
+
         if (currentPlayer == 0) {
           console.log('Player 1 wins!');
+
           for(i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
+          game.gameWinner = players.player1.email;
           points1++;
         } else {
           console.log('Player 2 wins!');
           for (i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
-
+          game.gameWinner = players.player2.email;
           points2++;
         }
         document.getElementById('p1-score').innerHTML = 'Wins: ' + points1;
         document.getElementById('p2-score').innerHTML = 'Wins: ' + points2;
+        console.log(game);
+
+        // send game object to php for adding to the db.
+        
         reset();
 
       } else {
@@ -142,26 +151,26 @@ function gamePlay(p1Name, p2Name) {
 function reset() {
   let reset = false;
   currentPlayer = 0;
-  console.log('Selections: ', player1Selections, player2Selections);
-  // console.log(player1Selections.length + player2Selections.length);
   var itemsToClean = document.querySelectorAll('.item');
 
   console.log('To clean: ', itemsToClean);
 
   [].forEach.call(itemsToClean, (item) => {
-    console.log('Item: ', item.classList);
+    console.log('Item: ', item);
 
     item.classList.remove('played', 'player1', 'player2');
     // item.classList.remove('.played.player2');
     item.innerHTML = '';
-    item.removeEventListener('click', handler);
+
+    item.removeEventListener('click', this.handler);
+
   });
+
   player1Selections = new Array();
   player2Selections = new Array();
-  // for(i = 0)
-  console.log('P1 selections: ', player1Selections);
-
-  // document.getElementsByClassName('item').classList.remove(!'item');
+  if(player1Selections.length == 0 && player2Selections.length == 0) {
+    reset = true;
+  }
   return reset;
 }
 
@@ -228,8 +237,18 @@ createPlayers = (players) => {
       players.player2.name = document.getElementById('p2Name').value;
       players.player2.email = document.getElementById('p2Email').value;
     }
-    players = players;
+    let startTime = new Date();
+    // players = players;
+    game = {
+      players: {
+        p1: players.player1.email,
+        p2: players.player2.email,
+      },
+      gameStarted: startTime, // datetime
+    }
     console.log('Created players:', players);
+    console.log('Game: ', game);
+
     created = true;
     // debugger;
     return created;
