@@ -36,10 +36,7 @@
           </form>
         </div>
         <div id="scores">
-          <ul>
-            <li>Player 1: <span id="p1-name"></span> <span id="p1-score" data-player1-score=""></span></li>
-            <li>Player 2: <span id="p2-name"></span> <span id="p2-score" data-player2-score=""></span></li>
-          </ul>
+
         </div>
         <div id="board" data-board>
           <div id="grid" data-grid>
@@ -60,11 +57,10 @@
       <div class="game-info current-game">
         <h3>Current game info</h3>
         <ul>
-          <li>Player 1: Name (x)</li>
-          <li>Player 2: Name (o)</li>
-          <li>Moves made: 0</li>
-          <li></li>
-          <li></li>
+          <li>Player 1: <span id="p1-name"></span> <span id="p1-score" data-player1-score=""></span></li>
+          <li>Player 2: <span id="p2-name"></span> <span id="p2-score" data-player2-score=""></span></li>
+          <li>Moves made: <span id="current-moves"></span>  </li>
+          <li>Winner: <span id="game-winner"></span></li>
         </ul>
       </div>
       <div class="previous-games"></div>

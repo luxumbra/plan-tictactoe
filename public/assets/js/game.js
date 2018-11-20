@@ -102,6 +102,9 @@ function gamePlay(p1Name, p2Name) {
   const gridItems = document.getElementsByClassName('item');
   const p1 = document.getElementById('p1-name');
   const p2 = document.getElementById('p2-name');
+  const curMoves = document.getElementById('current-moves');
+  const gameWinner = document.getElementById('game-winner');
+
   console.log(p1, p2);
 
   p1.innerHTML = p1Name;
@@ -128,6 +131,9 @@ function gamePlay(p1Name, p2Name) {
         player2Selections.sort((a, b) => { return a - b });
       }
       move++;
+      console.log(counter);
+
+      curMoves.innerHTML = move;
       // console.log('P1: ', player1Selections, 'P2', player2Selections);
 
       var isWin = checkWinner();
@@ -143,6 +149,7 @@ function gamePlay(p1Name, p2Name) {
             item.removeEventListener('click', handler);
           }
           game.gameWinner = players.player1.email;
+          gameWinner.innerHTML = players.player1.name;
           points1++;
           alert('Player 1 wins!');
         } else {
@@ -151,11 +158,13 @@ function gamePlay(p1Name, p2Name) {
             item.removeEventListener('click', handler);
           }
           game.gameWinner = players.player2.email;
+          gameWinner.innerHTML = players.player1.name;
           points2++;
           alert('Player 2 wins!');
         }
-        document.getElementById('p1-score').innerHTML = 'Wins: ' + points1;
-        document.getElementById('p2-score').innerHTML = 'Wins: ' + points2;
+
+        document.getElementById('p1-score').innerHTML = '| Wins: ' + points1;
+        document.getElementById('p2-score').innerHTML = '| Wins: ' + points2;
         // console.log(game);
 
         // send game object to php for adding to the db.
