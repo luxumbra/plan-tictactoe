@@ -8,6 +8,10 @@ body {
   color: white;
 }
 /* line 5, ../../../sass/components/_page.scss */
+body .center {
+  color: black;
+}
+/* line 8, ../../../sass/components/_page.scss */
 body .wrapper {
   box-shadow: 0 0 15rem rgba(0, 0, 0, 0.4) inset;
 }

@@ -15,7 +15,7 @@
       <div class="nav">
         <a href="/" class="nav-link home">Home</a>
         <a href="<? echo base_url() ?>about" class="nav-link about">About</a>
-        <a href="<? echo base_url() ?>game" class="nav-link game">Game</a>
+        <a href="<? echo base_url() ?>games" class="nav-link game">Game</a>
       </div>
     </div>
     <header class="container">

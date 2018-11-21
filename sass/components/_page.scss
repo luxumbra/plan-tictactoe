@@ -2,6 +2,9 @@ body {
   background-image: radial-gradient(circle, $mainColorLight 1%, $mainColor 100%);
   color: white;
 
+  .center {
+    color: black;
+  }
   .wrapper {
     box-shadow: 0 0 15rem rgba($color: #000000, $alpha: 0.4) inset;
   }
