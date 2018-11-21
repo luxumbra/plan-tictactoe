@@ -30,8 +30,6 @@ var points1 = 0;
 var points2 = 0;
 var size = 3;
 var created = false;
-
-
 var players = {
   player1: {
     name: '',
@@ -44,13 +42,11 @@ var players = {
     gameIcon: 'x', // or o
   }
 }
-console.log(players);
-
 var game = {
-  players: {
-    p1: players.player1.email,
-    p2: players.player2.email,
-  },
+  p1Name: players.player1.name,
+  p2Name: players.player2.name,
+  p1Email: players.player1.email,
+  p2Email: players.player2.email,
   gameStarted: '', // datetime
   gameEnded: '', // datetime
   gameWinner: '', // player email
@@ -63,35 +59,27 @@ var game = {
 
 function processForCI(game) {
   var base_url = document.getElementById('baseurl').value;
-  var xhr = new XMLHttpRequest();
+  var gameData = [];
 
-  xhr.open('POST', base_url+'/game/addGame');
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.onload = function() {
-    if(xhr.status === 200 && xhr.responseText !== game) {
-      console.log('Something went wrong... Game is: ', xhr.responseText);
-    } else if(xhr.status !== 200) {
-      console.log('Request failed. Returned status: ' + xhr.status);
+  gameData.push(game);
 
+  var submissionURL = base_url+'games/create';
+  $.ajax({
+    type: 'POST',
+    url: submissionURL,
+    data: {
+      insertData: gameData
+    },
+    success: function(data){
+      console.log('Posted game data!', data);
+    },
+    error: function(err){
+      console.log('Post of game data failed!', err);
     }
-  }
-  function param(game) {
-    console.log(game);
+  })
 
-    var encodedString = '';
-    for (var prop in game) {
-      if (object.hasOwnProperty(prop)) {
-        if (encodedString.length > 0) {
-          encodedString += '&';
-        }
-        encodedString += encodeURI(prop + '=' + game[prop]);
-        console.log(encodedString);
-      }
-    }
-    debugger;
-    return encodedString;
-  }
-  // xhr.send(encodeURI(encodedString));
+
+
 }
 
 function gamePlay(p1Name, p2Name) {
@@ -278,10 +266,10 @@ createPlayers = (players) => {
 
     let startTime = new Date();
     game = {
-      players: {
-        p1: players.player1.email,
-        p2: players.player2.email,
-      },
+      p1Name: players.player1.name,
+      p1Email: players.player1.email,
+      p2Name: players.player2.name,
+      p2Email: players.player2.email,
       gameStarted: startTime,
     }
 

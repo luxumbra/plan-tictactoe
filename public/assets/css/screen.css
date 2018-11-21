@@ -49,3 +49,33 @@ body .wrapper {
 .game-container #board #grid .item.player1:hover, .game-container #board #grid .item.player2:hover {
   background: rgba(255, 255, 255, 0.8);
 }
+
+/* line 44, ../../../sass/components/_game.scss */
+.game-info .previous-games ol {
+  list-style: none;
+  padding-left: 0;
+}
+/* line 47, ../../../sass/components/_game.scss */
+.game-info .previous-games ol li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0;
+  padding: 1rem 0;
+}
+/* line 53, ../../../sass/components/_game.scss */
+.game-info .previous-games ol li li:first-child {
+  padding-top: 0;
+}
+/* line 57, ../../../sass/components/_game.scss */
+.game-info .previous-games ol li dl {
+  display: flex;
+  justify-content: start;
+  flex-flow: wrap;
+  margin: 0;
+  width: 100%;
+}
+/* line 64, ../../../sass/components/_game.scss */
+.game-info .previous-games ol li dl dt, .game-info .previous-games ol li dl dd {
+  width: 40%;
+  align-self: auto;
+  justify-items: first baseline;
+}

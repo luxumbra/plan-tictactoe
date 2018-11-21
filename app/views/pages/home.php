@@ -53,8 +53,8 @@
         </div>
       </div>
     </div>
-    <div class="col col-12 col-lg-4">
-      <div class="game-info current-game">
+    <div class="col col-12 col-lg-4 game-info">
+      <div class="current-game">
         <h3>Current game info</h3>
         <ul>
           <li>Player 1: <span id="p1-name"></span> <span id="p1-score" data-player1-score=""></span></li>
@@ -64,16 +64,31 @@
         </ul>
       </div>
       <div class="previous-games">
-        <h2><?php echo $pastGamesTitle; ?></h2>
+        <h3><?php echo $pastGamesTitle; ?></h3>
         <?php
           $totalGames = sizeOf($games);
           if($totalGames == 0) {
             echo '<p>No games available.</p>';
           }
+          ?>
+        <ol>
+        <?php
           for ($i=0; $i < $totalGames; $i++) {
-            print_r($games);
+            echo '<li>
+                  <dl>
+                    <dt>Date played</dt>
+                    <dd>The date</dd>
+                    <dt>Player 1</dt>
+                    <dd>' . $games[$i]['player1email'] . '</dd>
+                    <dt>Player 2</dt>
+                    <dd>' . $games[$i]['player2email'] .'</dd>
+                    <dt>Winner</dt>
+                    <dd>' . $games[$i]['winner'] . '</dd>
+                  </dl>
+                  </li>';
           }
         ?>
+        </ol>
       </div>
 
     </div>
