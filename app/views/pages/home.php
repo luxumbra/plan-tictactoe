@@ -71,7 +71,7 @@
             echo '<p>No games available.</p>';
           }
           for ($i=0; $i < $totalGames; $i++) {
-            print_r($games[0]);
+            print_r($games);
           }
         ?>
       </div>
