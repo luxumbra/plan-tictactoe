@@ -63,7 +63,18 @@
           <li>Winner: <span id="game-winner"></span></li>
         </ul>
       </div>
-      <div class="previous-games"></div>
+      <div class="previous-games">
+        <h2><?php echo $pastGamesTitle; ?></h2>
+        <?php
+          $totalGames = sizeOf($games);
+          if($totalGames == 0) {
+            echo '<p>No games available.</p>';
+          }
+          for ($i=0; $i < $totalGames; $i++) {
+            print_r($games[0]);
+          }
+        ?>
+      </div>
 
     </div>
   </div>

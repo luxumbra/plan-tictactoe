@@ -4,7 +4,7 @@ class Games extends CI_Controller {
   public function index() {
 
     $data['title'] = 'Last 5 games played';
-    $data['games'] = $this->game_models->get_posts();
+    $data['games'] = $this->game_models->get_games();
     print_r($data['games']);
 
     $this->load->view('templates/header', $data);
