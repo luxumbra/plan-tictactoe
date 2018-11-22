@@ -40,7 +40,9 @@
 .game-info {
 
   .previous-games {
-
+    &.show-lg-up {
+      display: none;
+    }
     ol {
       list-style: none;
       padding-left: 0;
@@ -69,7 +71,11 @@
         }
       }
     }
-
+    @media (min-width: 992px) {
+      &.show-lg-up {
+        display: inherit;
+      }
+    }
   }
 
 }

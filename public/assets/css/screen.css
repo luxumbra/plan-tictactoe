@@ -14,6 +14,7 @@ body .center {
 /* line 8, ../../../sass/components/_page.scss */
 body .wrapper {
   box-shadow: 0 0 15rem rgba(0, 0, 0, 0.4) inset;
+  min-height: 100vh;
 }
 
 /* line 3, ../../../sass/components/_game.scss */
@@ -54,22 +55,26 @@ body .wrapper {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* line 44, ../../../sass/components/_game.scss */
+/* line 43, ../../../sass/components/_game.scss */
+.game-info .previous-games.show-lg-up {
+  display: none;
+}
+/* line 46, ../../../sass/components/_game.scss */
 .game-info .previous-games ol {
   list-style: none;
   padding-left: 0;
 }
-/* line 47, ../../../sass/components/_game.scss */
+/* line 49, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   margin: 0;
   padding: 1rem 0;
 }
-/* line 53, ../../../sass/components/_game.scss */
+/* line 55, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li li:first-child {
   padding-top: 0;
 }
-/* line 57, ../../../sass/components/_game.scss */
+/* line 59, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl {
   display: flex;
   justify-content: start;
@@ -77,9 +82,15 @@ body .wrapper {
   margin: 0;
   width: 100%;
 }
-/* line 64, ../../../sass/components/_game.scss */
+/* line 66, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl dt, .game-info .previous-games ol li dl dd {
   width: 40%;
   align-self: auto;
   justify-items: first baseline;
+}
+@media (min-width: 992px) {
+  /* line 75, ../../../sass/components/_game.scss */
+  .game-info .previous-games.show-lg-up {
+    display: inherit;
+  }
 }

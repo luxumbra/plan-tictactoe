@@ -63,7 +63,7 @@
           <li>Winner: <span id="game-winner"></span></li>
         </ul>
       </div>
-      <div class="previous-games">
+      <div class="previous-games show-lg-up">
         <h3><?php echo $pastGamesTitle; ?></h3>
         <?php
           $totalGames = sizeOf($games);

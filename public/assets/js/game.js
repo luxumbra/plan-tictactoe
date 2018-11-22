@@ -293,3 +293,6 @@ function startGame() {
 
   }
 }
+ScrollReveal().reveal('.game-container', { delay: 500 });
+
+ScrollReveal().reveal('.current-game + .previous-games, .current-game', { delay: 700 });

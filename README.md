@@ -35,6 +35,6 @@
  * Visit http://192.168.33.10/index.php/pages/view/home in your browser to play the game.
 
  ### Issues
- * I did not manage to finish setting up the game to add game results to the database. As a result, game history in the right hand column is not present.
- * I also wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
+ * I wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
  * The game works but doesn't reset fully as event listeners are not getting removed from the squares, that have not been played, in the game grid and thus, a player can still select these. However, the game isWon, so this doesn't affect the results.
+ * Users game piece is currently automatically selected.
