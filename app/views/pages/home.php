@@ -74,16 +74,17 @@
         <ol>
         <?php
           for ($i=0; $i < $totalGames; $i++) {
+            $date = $games[$i]['gameStarted'];
             echo '<li>
                   <dl>
                     <dt>Date played</dt>
-                    <dd>The date</dd>
+                    <dd>' . $date . '</dd>
                     <dt>Player 1</dt>
-                    <dd>' . $games[$i]['player1email'] . '</dd>
+                    <dd>' . $games[$i]['player1name'] . '</dd>
                     <dt>Player 2</dt>
-                    <dd>' . $games[$i]['player2email'] .'</dd>
+                    <dd>' . $games[$i]['player2name'] .'</dd>
                     <dt>Winner</dt>
-                    <dd>' . $games[$i]['winner'] . '</dd>
+                    <dd>' . $games[$i]['gameWinner'] . '</dd>
                   </dl>
                   </li>';
           }

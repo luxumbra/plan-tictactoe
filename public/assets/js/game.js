@@ -59,16 +59,19 @@ var game = {
 
 function processForCI(game) {
   var base_url = document.getElementById('baseurl').value;
+
   var gameData = [];
 
   gameData.push(game);
+  // console.log(gameData);
+  // debugger;
 
   var submissionURL = base_url+'games/create';
   $.ajax({
     type: 'POST',
     url: submissionURL,
     data: {
-      insertData: gameData
+      insertData: game
     },
     success: function(data){
       console.log('Posted game data!', data);
@@ -76,10 +79,7 @@ function processForCI(game) {
     error: function(err){
       console.log('Post of game data failed!', err);
     }
-  })
-
-
-
+  });
 }
 
 function gamePlay(p1Name, p2Name) {
@@ -128,7 +128,8 @@ function gamePlay(p1Name, p2Name) {
 
       if (isWin) {
         let endTime = new Date();
-        game.gameEnded = endTime;
+        endTimestamp = Date.parse(endTime);
+        game.gameEnded = endTimestamp;
 
         if (currentPlayer == 0) {
           // console.log('Player 1 wins!');
@@ -136,7 +137,7 @@ function gamePlay(p1Name, p2Name) {
           for(i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
-          game.gameWinner = players.player1.email;
+          game.gameWinner = players.player1.name;
           gameWinner.innerHTML = players.player1.name;
           points1++;
           alert('Player 1 wins!');
@@ -145,7 +146,7 @@ function gamePlay(p1Name, p2Name) {
           for (i = 0; i < gridItems.length; i++) {
             item.removeEventListener('click', handler);
           }
-          game.gameWinner = players.player2.email;
+          game.gameWinner = players.player2.name;
           gameWinner.innerHTML = players.player1.name;
           points2++;
           alert('Player 2 wins!');
@@ -265,12 +266,13 @@ createPlayers = (players) => {
     }
 
     let startTime = new Date();
+    startTimestamp = Date.parse(startTime);
     game = {
-      p1Name: players.player1.name,
-      p1Email: players.player1.email,
-      p2Name: players.player2.name,
-      p2Email: players.player2.email,
-      gameStarted: startTime,
+      player1name: players.player1.name,
+      player1email: players.player1.email,
+      player2name: players.player2.name,
+      player2email: players.player2.email,
+      gameStarted: startTimestamp,
     }
 
     created = true;

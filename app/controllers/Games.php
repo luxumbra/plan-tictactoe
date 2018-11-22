@@ -13,12 +13,17 @@ class Games extends CI_Controller {
 
   public function create() {
     $data = $this->input->post('insertData');
+
+
+    // exit('Debug exit');
     if($data === false){
       print('No game data');
     }
     print('Game controller');
-    print_r($data);
+    // $dataJSON = json_decode($data, true);
+    // print_r($dataJSON);
+
     $this->game_model->add_game($data);
-    redirect('/');
+    // redirect('/');
   }
 }
