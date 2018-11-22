@@ -31,8 +31,8 @@
  * Ensure you have VirtualBox and Vagrant installed on your system
  * Run `vagrant up`
  * ssh into the vagrant box with `vagrant ssh` from your command line
- * use the game.sql file to create the required `game` table on the `scotchbox` db
- * Visit http://192.168.33.10/index.php/pages/view/home in your browser to play the game.
+ * use the games.sql file to create the required `game` table on the `scotchbox` db. There's some dummy data here too.
+ * Visit http://192.168.33.10/ in your browser to play the game.
 
  ### Issues
  * I wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
