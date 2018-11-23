@@ -43,19 +43,14 @@ var players = {
   }
 }
 var game = {
-  p1Name: players.player1.name,
-  p2Name: players.player2.name,
-  p1Email: players.player1.email,
-  p2Email: players.player2.email,
+  player1name: players.player1.name,
+  player1email: players.player1.email,
+  player2name: players.player2.name,
+  player2email: players.player2.email,
+  gameWinner: '', // player email
   gameStarted: '', // datetime
   gameEnded: '', // datetime
-  gameWinner: '', // player email
 }
-
-// const gameContainer = document.getElementById('game');
-// const board = document.getElementById('board');
-// const grid = document.getElementById('grid');
-// const gridItems = document.getElementsByClassName('item');
 
 function processForCI(game) {
   var base_url = document.getElementById('baseurl').value;
@@ -82,8 +77,13 @@ function processForCI(game) {
   });
 }
 
+function updateIcon(icon = 'plus') {
+  var playerIcon = '<i data-feather=\"' + icon + '\"></i>';
+
+  return playerIcon;
+}
+
 function gamePlay(p1Name, p2Name) {
-  // event.preventDefault();
   const gameContainer = document.getElementById('game');
   const board = document.getElementById('board');
   const grid = document.getElementById('grid');
@@ -104,16 +104,22 @@ function gamePlay(p1Name, p2Name) {
 
   for(i = 0; i < gridCount; i++) {
     let item = document.getElementById(itemId);
+    let iconWrapper = item.childNodes;
+    const iconHTML = iconWrapper[0].innerHTML
+    console.log('Icon: ', iconHTML, itemId);
 
     let handler = function (e) {
 
       if (currentPlayer == 0) {
-        item.innerHTML = 'X';
+        iconWrapper.innerHTML = updateIcon('x');
+        console.log('Played icon: ', iconHTML);
         item.classList.add('played', 'player1');
         player1Selections.push(parseInt(item.dataset.boardPos));
         player1Selections.sort((a, b) => { return a - b });
       } else {
-        item.innerHTML = 'O';
+        iconWrapper.innerHTML = updateIcon('circle');
+        feather.replace();
+        console.log('Played icon: ', iconHTML);
         item.classList.add('played', 'player2');
         player2Selections.push(parseInt(item.dataset.boardPos));
         player2Selections.sort((a, b) => { return a - b });
@@ -263,6 +269,7 @@ createPlayers = (players) => {
       players.player1.email = document.getElementById('p1Email').value;
       players.player2.name = document.getElementById('p2Name').value;
       players.player2.email = document.getElementById('p2Email').value;
+
     }
 
     let startTime = new Date();
@@ -293,6 +300,8 @@ function startGame() {
 
   }
 }
-ScrollReveal().reveal('.game-container', { delay: 500 });
+feather.replace({'stroke-width': 1});
 
-ScrollReveal().reveal('.current-game + .previous-games, .current-game', { delay: 700 });
+ScrollReveal().reveal('.game-container', { delay: 500 });
+ScrollReveal().reveal('.game-info', { delay: 700 });
+// ScrollReveal().reveal('.item[data-feather]', { delay: 900 });

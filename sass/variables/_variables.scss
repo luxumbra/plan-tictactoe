@@ -1,2 +1,9 @@
-$mainColor: rgba(#2E4347, 1);
+$titleFont: 'Courgette', cursive;
+$headingFont: 'Raleway', sans-serif;
+$defaultFont: 'Ubuntu', sans-serif;
+$navFont: $titleFont;
+
+$mainColor: rgba(rgb(35, 51, 54), 1);
 $mainColorLight: rgba(#405d62, 1);
+
+$borderStyle1: 1px solid rgba(#fff, 0.6);

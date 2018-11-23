@@ -4,77 +4,141 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 1, ../../../sass/components/_page.scss */
 body {
-  background-image: radial-gradient(circle, #405d62 1%, #2e4347 100%);
+  background-image: radial-gradient(circle, #405d62 1%, #233336 100%);
   color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 14px;
 }
-/* line 5, ../../../sass/components/_page.scss */
+/* line 7, ../../../sass/components/_page.scss */
 body .center {
   color: black;
 }
-/* line 8, ../../../sass/components/_page.scss */
+/* line 10, ../../../sass/components/_page.scss */
 body .wrapper {
   box-shadow: 0 0 15rem rgba(0, 0, 0, 0.4) inset;
   min-height: 100vh;
+}
+/* line 15, ../../../sass/components/_page.scss */
+body .nav-bar {
+  font-family: "Courgette", cursive;
+  font-size: 1.5rem;
+}
+/* line 20, ../../../sass/components/_page.scss */
+body .nav-bar .nav a {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color .3s ease-in-out;
+}
+/* line 24, ../../../sass/components/_page.scss */
+body .nav-bar .nav a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+/* line 30, ../../../sass/components/_page.scss */
+body h1 {
+  font-family: "Courgette", cursive;
+}
+/* line 33, ../../../sass/components/_page.scss */
+body h2, body h3, body h4 {
+  font-family: "Raleway", sans-serif;
 }
 
 /* line 3, ../../../sass/components/_game.scss */
 .game-container #board {
   background-color: rgba(0, 0, 0, 0.2);
-  height: 30rem;
-  width: 30rem;
+  height: 100%;
+  width: 100%;
+  max-height: auto;
+  max-width: 30rem;
   margin: 0 auto;
+  box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.8);
 }
-/* line 9, ../../../sass/components/_game.scss */
+/* line 12, ../../../sass/components/_game.scss */
 .game-container #board #grid {
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 101%;
+  margin-left: -0.5%;
 }
-/* line 16, ../../../sass/components/_game.scss */
+/* line 20, ../../../sass/components/_game.scss */
 .game-container #board #grid .item {
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   height: 100%;
   width: 100%;
   max-height: 33%;
   max-width: 33%;
-  transition: background 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
-/* line 24, ../../../sass/components/_game.scss */
+/* line 28, ../../../sass/components/_game.scss */
+.game-container #board #grid .item:nth-of-type(1), .game-container #board #grid .item:nth-of-type(4), .game-container #board #grid .item:nth-of-type(7) {
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+}
+/* line 31, ../../../sass/components/_game.scss */
+.game-container #board #grid .item:nth-of-type(3), .game-container #board #grid .item:nth-of-type(6), .game-container #board #grid .item:nth-of-type(9) {
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+}
+/* line 34, ../../../sass/components/_game.scss */
+.game-container #board #grid .item:nth-of-type(7), .game-container #board #grid .item:nth-of-type(8), .game-container #board #grid .item:nth-of-type(9) {
+  border-bottom: 0;
+}
+/* line 37, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:hover {
   background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.6) inset;
 }
-/* line 27, ../../../sass/components/_game.scss */
+/* line 41, ../../../sass/components/_game.scss */
 .game-container #board #grid .item.player1, .game-container #board #grid .item.player2 {
   background: rgba(0, 0, 0, 0.8);
 }
-/* line 30, ../../../sass/components/_game.scss */
+/* line 44, ../../../sass/components/_game.scss */
 .game-container #board #grid .item.player1:hover, .game-container #board #grid .item.player2:hover {
   background: rgba(255, 255, 255, 0.8);
 }
+/* line 48, ../../../sass/components/_game.scss */
+.game-container #board #grid .item .feather-plus, .game-container #board #grid .item [data-feather] {
+  visibility: hidden;
+}
+/* line 51, ../../../sass/components/_game.scss */
+.game-container #board #grid .item .feather-plus[class|="feather-"], .game-container #board #grid .item [data-feather][class|="feather-"] {
+  visibility: visible;
+}
+/* line 55, ../../../sass/components/_game.scss */
+.game-container #board #grid .item div {
+  display: flex;
+  flex-flow: row;
+  align-content: center;
+  justify-content: middle;
+  width: 100%;
+  height: 100%;
+}
+/* line 63, ../../../sass/components/_game.scss */
+.game-container #board #grid .item div svg {
+  width: 60%;
+  height: 60%;
+  margin: 20%;
+}
 
-/* line 43, ../../../sass/components/_game.scss */
+/* line 78, ../../../sass/components/_game.scss */
 .game-info .previous-games.show-lg-up {
   display: none;
 }
-/* line 46, ../../../sass/components/_game.scss */
+/* line 81, ../../../sass/components/_game.scss */
 .game-info .previous-games ol {
   list-style: none;
   padding-left: 0;
 }
-/* line 49, ../../../sass/components/_game.scss */
+/* line 84, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   margin: 0;
   padding: 1rem 0;
 }
-/* line 55, ../../../sass/components/_game.scss */
+/* line 90, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li li:first-child {
   padding-top: 0;
 }
-/* line 59, ../../../sass/components/_game.scss */
+/* line 94, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl {
   display: flex;
   justify-content: start;
@@ -82,14 +146,14 @@ body .wrapper {
   margin: 0;
   width: 100%;
 }
-/* line 66, ../../../sass/components/_game.scss */
+/* line 101, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl dt, .game-info .previous-games ol li dl dd {
   width: 40%;
   align-self: auto;
   justify-items: first baseline;
 }
 @media (min-width: 992px) {
-  /* line 75, ../../../sass/components/_game.scss */
+  /* line 110, ../../../sass/components/_game.scss */
   .game-info .previous-games.show-lg-up {
     display: inherit;
   }

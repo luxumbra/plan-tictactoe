@@ -2,9 +2,12 @@
 
   #board {
     background-color: rgba($color: black, $alpha: 0.2);
-    height: 30rem;
-    width: 30rem;
+    height: 100%;
+    width: 100%;
+    max-height: auto;
+    max-width: 30rem;
     margin: 0 auto;
+    box-shadow: 4px 4px 25px rgba(#000, 0.8);
 
     #grid {
       display: flex;
@@ -12,23 +15,55 @@
       flex-wrap: wrap;
       justify-content: center;
       height: 100%;
-      width: 100%;
+      width: 101%;
+      margin-left: -0.5%;
       .item {
-        border: 1px solid rgba(0,0,0,0.6);
+        border-bottom: $borderStyle1;
         height: 100%;
         width: 100%;
         max-height: 33%;
         max-width: 33%;
-        transition: background 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
 
+        &:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(7) {
+          border-right: $borderStyle1;
+        }
+        &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9) {
+          border-left: $borderStyle1;
+        }
+        &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) {
+          border-bottom: 0;
+        }
         &:hover {
-          background: rgba($color: white, $alpha: 0.6)
+          background: rgba($color: white, $alpha: 0.6);
+          box-shadow: 0 0 3rem rgba(#000, 0.6) inset;
         }
         &.player1, &.player2 {
           background: rgba($color: black, $alpha: 0.8);
 
           &:hover {
             background: rgba($color: white, $alpha: 0.8);
+          }
+        }
+        .feather-plus, [data-feather] {
+          visibility: hidden;
+
+          &[class|="feather-"] {
+            visibility: visible;
+          }
+        }
+        div {
+          display: flex;
+          flex-flow: row;
+          align-content: center;
+          justify-content: middle;
+          width: 100%;
+          height: 100%;
+
+          svg {
+            width: 60%;
+            height: 60%;
+            margin: 20%;
           }
         }
       }
