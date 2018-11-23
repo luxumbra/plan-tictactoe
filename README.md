@@ -35,6 +35,8 @@
  * Visit http://192.168.33.10/ in your browser to play the game.
 
  ### Issues
- * I wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
+ * Form doesn't validate yet.
  * The game works but doesn't reset fully as event listeners are not getting removed from the squares, that have not been played, in the game grid and thus, a player can still select these. However, the game isWon, so this doesn't affect the results.
- * Users game piece is currently automatically selected.
+ * Need better feedback for the user to make things clearer: game resets before last players piece is displayed. Need to have a modal or something to notify the win (winners name).
+ * Users game piece is currently automatically selected - WIP.
+ * I wanted to add a players table to be able to check if two opponents had played together before to keep a tally of total game wins.
