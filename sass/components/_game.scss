@@ -1,5 +1,7 @@
 .game-container {
 
+  visibility: hidden;
+
   #board {
     background-color: rgba($color: black, $alpha: 0.2);
     height: 100%;
@@ -39,11 +41,8 @@
           box-shadow: 0 0 3rem rgba(#000, 0.6) inset;
         }
         &.player1, &.player2 {
-          background: rgba($color: black, $alpha: 0.8);
-
-          &:hover {
-            background: rgba($color: white, $alpha: 0.8);
-          }
+          background: rgba($color: white, $alpha: 0.8);
+          box-shadow: 0 0 2rem rgba(#000, 0.5) inset;
         }
         .feather-plus, [data-feather] {
           visibility: hidden;
@@ -60,10 +59,17 @@
           width: 100%;
           height: 100%;
 
-          svg {
+          img, svg {
             width: 60%;
             height: 60%;
             margin: 20%;
+            // opacity: 0;
+            transition: opacity 0.3s ease-in;
+
+            &.show {
+              opacity: 1;
+              visibility: hidden;
+            }
           }
         }
       }
@@ -73,7 +79,7 @@
 
 }
 .game-info {
-
+  visibility: hidden;
   .previous-games {
     &.show-lg-up {
       display: none;

@@ -40,8 +40,22 @@ body h1 {
 body h2, body h3, body h4 {
   font-family: "Raleway", sans-serif;
 }
+/* line 39, ../../../sass/components/_page.scss */
+body .modal .modal-content {
+  background-color: rgba(35, 51, 54, 0.8);
+  text-align: center;
+}
+/* line 43, ../../../sass/components/_page.scss */
+body .modal .modal-content p {
+  font-size: 3rem;
+  font-family: "Courgette", cursive;
+}
 
-/* line 3, ../../../sass/components/_game.scss */
+/* line 1, ../../../sass/components/_game.scss */
+.game-container {
+  visibility: hidden;
+}
+/* line 5, ../../../sass/components/_game.scss */
 .game-container #board {
   background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
@@ -51,7 +65,7 @@ body h2, body h3, body h4 {
   margin: 0 auto;
   box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.8);
 }
-/* line 12, ../../../sass/components/_game.scss */
+/* line 14, ../../../sass/components/_game.scss */
 .game-container #board #grid {
   display: flex;
   flex-flow: row;
@@ -61,7 +75,7 @@ body h2, body h3, body h4 {
   width: 101%;
   margin-left: -0.5%;
 }
-/* line 20, ../../../sass/components/_game.scss */
+/* line 22, ../../../sass/components/_game.scss */
 .game-container #board #grid .item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   height: 100%;
@@ -70,40 +84,37 @@ body h2, body h3, body h4 {
   max-width: 33%;
   transition: all 0.5s ease-in-out;
 }
-/* line 28, ../../../sass/components/_game.scss */
+/* line 30, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:nth-of-type(1), .game-container #board #grid .item:nth-of-type(4), .game-container #board #grid .item:nth-of-type(7) {
   border-right: 1px solid rgba(255, 255, 255, 0.6);
 }
-/* line 31, ../../../sass/components/_game.scss */
+/* line 33, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:nth-of-type(3), .game-container #board #grid .item:nth-of-type(6), .game-container #board #grid .item:nth-of-type(9) {
   border-left: 1px solid rgba(255, 255, 255, 0.6);
 }
-/* line 34, ../../../sass/components/_game.scss */
+/* line 36, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:nth-of-type(7), .game-container #board #grid .item:nth-of-type(8), .game-container #board #grid .item:nth-of-type(9) {
   border-bottom: 0;
 }
-/* line 37, ../../../sass/components/_game.scss */
+/* line 39, ../../../sass/components/_game.scss */
 .game-container #board #grid .item:hover {
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 0 3rem rgba(0, 0, 0, 0.6) inset;
 }
-/* line 41, ../../../sass/components/_game.scss */
+/* line 43, ../../../sass/components/_game.scss */
 .game-container #board #grid .item.player1, .game-container #board #grid .item.player2 {
-  background: rgba(0, 0, 0, 0.8);
-}
-/* line 44, ../../../sass/components/_game.scss */
-.game-container #board #grid .item.player1:hover, .game-container #board #grid .item.player2:hover {
   background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5) inset;
 }
-/* line 48, ../../../sass/components/_game.scss */
+/* line 47, ../../../sass/components/_game.scss */
 .game-container #board #grid .item .feather-plus, .game-container #board #grid .item [data-feather] {
   visibility: hidden;
 }
-/* line 51, ../../../sass/components/_game.scss */
+/* line 50, ../../../sass/components/_game.scss */
 .game-container #board #grid .item .feather-plus[class|="feather-"], .game-container #board #grid .item [data-feather][class|="feather-"] {
   visibility: visible;
 }
-/* line 55, ../../../sass/components/_game.scss */
+/* line 54, ../../../sass/components/_game.scss */
 .game-container #board #grid .item div {
   display: flex;
   flex-flow: row;
@@ -112,33 +123,43 @@ body h2, body h3, body h4 {
   width: 100%;
   height: 100%;
 }
-/* line 63, ../../../sass/components/_game.scss */
-.game-container #board #grid .item div svg {
+/* line 62, ../../../sass/components/_game.scss */
+.game-container #board #grid .item div img, .game-container #board #grid .item div svg {
   width: 60%;
   height: 60%;
   margin: 20%;
+  transition: opacity 0.3s ease-in;
+}
+/* line 69, ../../../sass/components/_game.scss */
+.game-container #board #grid .item div img.show, .game-container #board #grid .item div svg.show {
+  opacity: 1;
+  visibility: hidden;
 }
 
-/* line 78, ../../../sass/components/_game.scss */
+/* line 81, ../../../sass/components/_game.scss */
+.game-info {
+  visibility: hidden;
+}
+/* line 84, ../../../sass/components/_game.scss */
 .game-info .previous-games.show-lg-up {
   display: none;
 }
-/* line 81, ../../../sass/components/_game.scss */
+/* line 87, ../../../sass/components/_game.scss */
 .game-info .previous-games ol {
   list-style: none;
   padding-left: 0;
 }
-/* line 84, ../../../sass/components/_game.scss */
+/* line 90, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   margin: 0;
   padding: 1rem 0;
 }
-/* line 90, ../../../sass/components/_game.scss */
+/* line 96, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li li:first-child {
   padding-top: 0;
 }
-/* line 94, ../../../sass/components/_game.scss */
+/* line 100, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl {
   display: flex;
   justify-content: start;
@@ -146,14 +167,14 @@ body h2, body h3, body h4 {
   margin: 0;
   width: 100%;
 }
-/* line 101, ../../../sass/components/_game.scss */
+/* line 107, ../../../sass/components/_game.scss */
 .game-info .previous-games ol li dl dt, .game-info .previous-games ol li dl dd {
   width: 40%;
   align-self: auto;
   justify-items: first baseline;
 }
 @media (min-width: 992px) {
-  /* line 110, ../../../sass/components/_game.scss */
+  /* line 116, ../../../sass/components/_game.scss */
   .game-info .previous-games.show-lg-up {
     display: inherit;
   }

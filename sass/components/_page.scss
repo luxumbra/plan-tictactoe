@@ -34,4 +34,17 @@ body {
     font-family: $headingFont;
   }
 
+  .modal {
+
+    .modal-content {
+      background-color: rgba($mainColor, 0.8);
+      text-align: center;
+
+      p {
+        font-size: 3rem;
+        font-family: $titleFont;
+      }
+    }
+
+  }
 }

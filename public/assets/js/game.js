@@ -56,6 +56,7 @@ function processForCI(game) {
   var base_url = document.getElementById('baseurl').value;
 
   var gameData = [];
+  console.log(game);
 
   gameData.push(game);
   // console.log(gameData);
@@ -83,7 +84,7 @@ function updateIcon(icon = 'plus') {
   return playerIcon;
 }
 
-function gamePlay(p1Name, p2Name) {
+function gamePlay(p1Name, p2Name, p1Icon) {
   const gameContainer = document.getElementById('game');
   const board = document.getElementById('board');
   const grid = document.getElementById('grid');
@@ -93,6 +94,11 @@ function gamePlay(p1Name, p2Name) {
   const curMoves = document.getElementById('current-moves');
   const gameWinner = document.getElementById('game-winner');
 
+  let p2Icon = 'circle';
+  if(p1Icon === 'o'){
+    p1Icon = 'circle';
+    p2Icon = 'x';
+  }
   console.log(p1, p2);
 
   p1.innerHTML = p1Name;
@@ -105,30 +111,26 @@ function gamePlay(p1Name, p2Name) {
   for(i = 0; i < gridCount; i++) {
     let item = document.getElementById(itemId);
     let iconWrapper = item.childNodes;
-    const iconHTML = iconWrapper[0].innerHTML
-    console.log('Icon: ', iconHTML, itemId);
+    let icon = p1Icon;
 
-    let handler = function (e) {
+    var handler = function (e) {
 
       if (currentPlayer == 0) {
-        iconWrapper.innerHTML = updateIcon('x');
-        console.log('Played icon: ', iconHTML);
+        iconWrapper[0].innerHTML = '<img src="/assets/img/' + p1Icon + '.svg" class="player1-icon">';
         item.classList.add('played', 'player1');
+        item.removeEventListener('click', arguments.callee);
+        // grab the board position of the players moves for checking against the winningCombos
         player1Selections.push(parseInt(item.dataset.boardPos));
         player1Selections.sort((a, b) => { return a - b });
       } else {
-        iconWrapper.innerHTML = updateIcon('circle');
-        feather.replace();
-        console.log('Played icon: ', iconHTML);
+        iconWrapper[0].innerHTML = '<img src="/assets/img/' + p2Icon + '.svg" class="player2-icon">';
         item.classList.add('played', 'player2');
+        item.removeEventListener('click', arguments.callee);
         player2Selections.push(parseInt(item.dataset.boardPos));
         player2Selections.sort((a, b) => { return a - b });
       }
       move++;
-      console.log(counter);
-
       curMoves.innerHTML = move;
-      // console.log('P1: ', player1Selections, 'P2', player2Selections);
 
       var isWin = checkWinner();
 
@@ -136,47 +138,54 @@ function gamePlay(p1Name, p2Name) {
         let endTime = new Date();
         endTimestamp = Date.parse(endTime);
         game.gameEnded = endTimestamp;
-
+        var msg = '';
         if (currentPlayer == 0) {
-          // console.log('Player 1 wins!');
 
-          for(i = 0; i < gridItems.length; i++) {
-            item.removeEventListener('click', handler);
+          for(j = 0; j < gridItems.length; j++) {
+            item.removeEventListener('click', arguments.callee);
           }
           game.gameWinner = players.player1.name;
           gameWinner.innerHTML = players.player1.name;
           points1++;
-          alert('Player 1 wins!');
+          msg = game.gameWinner + ' wins!';
+
         } else {
-          // console.log('Player 2 wins!');
-          for (i = 0; i < gridItems.length; i++) {
-            item.removeEventListener('click', handler);
+
+          for (j = 0; j < gridItems.length; j++) {
+            item.removeEventListener('click', arguments.callee);
           }
           game.gameWinner = players.player2.name;
-          gameWinner.innerHTML = players.player1.name;
+          gameWinner.innerHTML = players.player2.name;
           points2++;
-          alert('Player 2 wins!');
+          msg = game.gameWinner + ' wins!';
+
         }
 
         document.getElementById('p1-score').innerHTML = '| Wins: ' + points1;
         document.getElementById('p2-score').innerHTML = '| Wins: ' + points2;
-        // console.log(game);
+
+        document.getElementById('who-won').innerHTML = msg;
+        setTimeout(function() {
+          $('#winnerModal').modal('show');
+        }, 300);
+        setTimeout(() => {
+          $('#winnerModal').modal('hide');
+        }, 3000);
 
         // send game object to php for adding to the db.
         processForCI(game);
-        reset();
+        setTimeout(reset, 2000);
 
       } else {
         if (currentPlayer == 0) {
           currentPlayer = 1;
-          item.removeEventListener('click', handler);
+          item.removeEventListener('click', arguments.callee);
         } else {
           currentPlayer = 0;
-          item.removeEventListener('click', handler);
+          item.removeEventListener('click', arguments.callee);
         }
       }
     }
-    // console.log(item);
 
     item.addEventListener('click', handler);
     counter++;
@@ -187,27 +196,29 @@ function gamePlay(p1Name, p2Name) {
 }
 
 function reset() {
-  let reset = false;
-  currentPlayer = 0;
-  var itemsToClean = document.querySelectorAll('.item');
+  // let reset = false;
+  // currentPlayer = 0;
+  // var itemsToClean = document.querySelectorAll('.item');
 
-  // console.log('To clean: ', itemsToClean);
+  // [].forEach.call(itemsToClean, (item) => {
 
-  [].forEach.call(itemsToClean, (item) => {
+  //   item.classList.remove('played', 'player1', 'player2');
+  //   // item.classList.remove('.played.player2');
+  //   item.innerHTML = '<div><i data-feather="plus"></i></div>';
+  //   feather.replace();
 
-    item.classList.remove('played', 'player1', 'player2');
-    // item.classList.remove('.played.player2');
-    item.innerHTML = '';
+  //   // window.removeEventListener
+  //   // debugger;
+  //   item.removeEventListener('click', arguments.callee);
 
-    item.removeEventListener('click', this.handler);
+  // });
 
-  });
-
-  player1Selections = new Array();
-  player2Selections = new Array();
-  if(player1Selections.length == 0 && player2Selections.length == 0) {
-    reset = true;
-  }
+  // player1Selections = new Array();
+  // player2Selections = new Array();
+  // if(player1Selections.length == 0 && player2Selections.length == 0) {
+  //   reset = true;
+  // }
+  location.reload();
   return reset;
 }
 
@@ -269,8 +280,9 @@ createPlayers = (players) => {
       players.player1.email = document.getElementById('p1Email').value;
       players.player2.name = document.getElementById('p2Name').value;
       players.player2.email = document.getElementById('p2Email').value;
-
+      players.player1.gameIcon = document.querySelector('input[name="playerIcons"]:checked').value;
     }
+  console.log(players.player1.gameIcon);
 
     let startTime = new Date();
     startTimestamp = Date.parse(startTime);
@@ -283,7 +295,6 @@ createPlayers = (players) => {
     }
 
     created = true;
-    // debugger;
     return created;
 
 
@@ -295,13 +306,13 @@ function startGame() {
   console.log('The players: ', players);
 
   if(created === true) {
-    gamePlay(players.player1.name, players.player2.name);
+    gamePlay(players.player1.name, players.player2.name, players.player1.gameIcon);
     console.log('Game started...');
 
   }
 }
 feather.replace({'stroke-width': 1});
 
-ScrollReveal().reveal('.game-container', { delay: 500 });
-ScrollReveal().reveal('.game-info', { delay: 700 });
+ScrollReveal().reveal('.game-container', { delay: 400 });
+ScrollReveal().reveal('.game-info', { delay: 600 });
 // ScrollReveal().reveal('.item[data-feather]', { delay: 900 });

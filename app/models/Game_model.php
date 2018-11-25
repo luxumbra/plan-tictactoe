@@ -9,7 +9,7 @@ class Game_model extends CI_Model {
     if($id === false){
       // $this->db->select('id, player1email, player2email, winner');
       $query = $this->db->limit(5);
-      $query = $this->db->order_by('gameStarted', 'DESC');
+      $query = $this->db->order_by('id', 'DESC');
       $query = $this->db->get('games');
 
       // print_r($query);

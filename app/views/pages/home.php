@@ -9,29 +9,23 @@
           <form id="playerData" onsubmit=startGame();>
             <input type="hidden" value="<?php echo base_url(); ?>" id="baseurl"/>
             <div class="form-row">
-              <div class="form-group col col-lg-3">
+              <div class="form-group col col-lg-6">
                 <label for="p1Name">Player 1 name</label><input type="text" id="p1Name" class="form-control">
                 <label for="p1Email">Player 1 email</label><input type="text" id="p1Email" class="form-control">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="playerIcons" id="playerIconsX" value="plus" checked>
+                  <input class="form-check-input" type="radio" name="playerIcons" id="playerIconsX" value="x" checked>
                   <label class="form-check-label" for="playerIconsX">
                     X
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="playerIcons" id="playerIconsO" value="O">
+                  <input class="form-check-input" type="radio" name="playerIcons" id="playerIconsO" value="o">
                   <label class="form-check-label" for="playerIconsO">
                     O
                   </label>
                 </div>
-                <!-- <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
-                  <label class="form-check-label" for="exampleRadios3">
-                    Disabled radio
-                  </label>
-                </div> -->
               </div>
-              <div class="form-group col col-lg-3">
+              <div class="form-group col col-lg-6">
                 <label for="p2Name">Player 2 name</label><input type="text" id="p2Name" class="form-control">
                 <label for="p2Email">Player 2 email</label><input type="text" id="p2Email" class="form-control">
                 <!-- <div class="btn-group">
@@ -44,6 +38,15 @@
               </div>
             </div>
           </form>
+          <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="who-won" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <p id="who-won"></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="current-game">
           <h3>Current game info</h3>
