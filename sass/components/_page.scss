@@ -43,6 +43,11 @@ body {
       p {
         font-size: 3rem;
         font-family: $titleFont;
+
+        &+p {
+          font-size: 2rem;
+          font-family: $defaultFont;
+        }
       }
     }
 

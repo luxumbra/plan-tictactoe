@@ -1,46 +1,77 @@
-/*
- Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Nov 26, 2018 at 12:34 AM
+-- Server version: 5.7.21-0ubuntu0.17.10.1
+-- PHP Version: 7.2.2-3+ubuntu17.10.1+deb.sury.org+1
 
- Source Server         : vagrant
- Source Server Type    : MySQL
- Source Server Version : 50721
- Source Host           : 127.0.0.1:3306
- Source Schema         : scotchbox
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
- Target Server Type    : MySQL
- Target Server Version : 50721
- File Encoding         : 65001
 
- Date: 22/11/2018 01:22:04
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+--
+-- Database: `scotchbox`
+--
 
--- ----------------------------
--- Table structure for games
--- ----------------------------
-DROP TABLE IF EXISTS `games`;
-CREATE TABLE `games`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `player1name` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `player1email` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `player2name` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `player2email` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `gameWinner` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `gameStarted` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
-  `gameEnded` datetime(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+-- --------------------------------------------------------
 
--- ----------------------------
--- Records of games
--- ----------------------------
-INSERT INTO `games` VALUES (6, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `games` VALUES (7, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Naomi', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `games` VALUES (8, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `games` VALUES (9, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `games` VALUES (10, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `games` VALUES (11, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+--
+-- Table structure for table `games`
+--
 
-SET FOREIGN_KEY_CHECKS = 1;
+CREATE TABLE `games` (
+  `id` int(11) NOT NULL,
+  `player1name` varchar(128) NOT NULL,
+  `player1email` varchar(128) DEFAULT NULL,
+  `player2name` varchar(128) NOT NULL,
+  `player2email` varchar(128) DEFAULT NULL,
+  `gameWinner` varchar(128) NOT NULL,
+  `gameStarted` datetime DEFAULT NULL,
+  `gameEnded` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `games`
+--
+
+INSERT INTO `games` (`id`, `player1name`, `player1email`, `player2name`, `player2email`, `gameWinner`, `gameStarted`, `gameEnded`) VALUES
+(86, 'Fenella', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Fenella', '2018-11-26 00:00:00', '2018-11-26 00:13:26'),
+(87, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '2018-11-26 00:00:00', '2018-11-26 00:14:50'),
+(88, 'Fenella', 'fdsdsf', 'Naomi', 'dfdfdsf', 'Fenella', '2018-11-26 00:00:00', '2018-11-26 00:00:00'),
+(89, 'Fenella', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Fenella', '2018-11-26 00:00:00', '2018-11-26 00:20:50'),
+(90, 'Fenella', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Fenella', '2018-11-26 00:00:00', '2018-11-26 00:21:50'),
+(91, 'Dave Sayer', 'bath.meme@gmail.com', 'Naomi', 'hello@sticksandstones.im', 'Dave Sayer', '2018-11-26 00:00:00', '2018-11-26 00:34:27');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `games`
+--
+ALTER TABLE `games`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `games`
+--
+ALTER TABLE `games`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

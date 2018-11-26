@@ -12,7 +12,7 @@
         <ol>
         <?php
         for ($i = 0; $i < $totalGames; $i++) {
-          $date = $games[$i]['gameStarted'];
+          $date = date('H:i l, d/m/Y', strtotime($games[$i]['gameEnded']));
           echo '<li>
                   <dl>
                     <dt>Date played</dt>

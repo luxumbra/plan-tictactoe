@@ -135,8 +135,8 @@ function gamePlay(p1Name, p2Name, p1Icon) {
       var isWin = checkWinner();
 
       if (isWin) {
-        let endTime = new Date();
-        endTimestamp = Date.parse(endTime);
+        let endTime = new Date().toJSON().slice(0,19).replace('T', ' ');
+        let endTimestamp = endTime;
         game.gameEnded = endTimestamp;
         var msg = '';
         if (currentPlayer == 0) {
@@ -147,7 +147,8 @@ function gamePlay(p1Name, p2Name, p1Icon) {
           game.gameWinner = players.player1.name;
           gameWinner.innerHTML = players.player1.name;
           points1++;
-          msg = game.gameWinner + ' wins!';
+          msg = '<p>' + game.gameWinner + ' wins!</p>';
+          msg += '<p class="delay">Refreshing the page...</p>';
 
         } else {
 
@@ -157,32 +158,50 @@ function gamePlay(p1Name, p2Name, p1Icon) {
           game.gameWinner = players.player2.name;
           gameWinner.innerHTML = players.player2.name;
           points2++;
-          msg = game.gameWinner + ' wins!';
+          msg = '<p>' + game.gameWinner + ' wins!</p>';
+          msg += '<p class="delay">Reloading the game...</p>';
 
         }
 
         document.getElementById('p1-score').innerHTML = '| Wins: ' + points1;
         document.getElementById('p2-score').innerHTML = '| Wins: ' + points2;
 
-        document.getElementById('who-won').innerHTML = msg;
+        document.getElementById('modalMessage').innerHTML = msg;
         setTimeout(function() {
-          $('#winnerModal').modal('show');
+          $('#gameModal').modal('show');
         }, 300);
         setTimeout(() => {
-          $('#winnerModal').modal('hide');
-        }, 3000);
+          $('#gameModal').modal('hide');
+        }, 2000);
 
         // send game object to php for adding to the db.
         processForCI(game);
-        setTimeout(reset, 2000);
+        setTimeout(reset, 2500);
 
       } else {
         if (currentPlayer == 0) {
           currentPlayer = 1;
           item.removeEventListener('click', arguments.callee);
+          // TODO: refactor as a reusable function
+          setTimeout(() => {
+            modalMsg = '<p>' + game.player2name + ' make your move.</p>';
+            document.getElementById('modalMessage').innerHTML = modalMsg;
+            $('#gameModal').modal('show');
+          }, 300);
+          setTimeout(() => {
+            $('#gameModal').modal('hide');
+          }, 1500);
         } else {
           currentPlayer = 0;
           item.removeEventListener('click', arguments.callee);
+          setTimeout(() => {
+            modalMsg = '<p>' + game.player1name + ' make your move.</p>';
+            document.getElementById('modalMessage').innerHTML = modalMsg;
+            $('#gameModal').modal('show');
+          }, 300);
+          setTimeout(() => {
+            $('#gameModal').modal('hide');
+          }, 1500);
         }
       }
     }
@@ -218,6 +237,7 @@ function reset() {
   // if(player1Selections.length == 0 && player2Selections.length == 0) {
   //   reset = true;
   // }
+  // TODO: Refactor for a less jarring user experience.
   location.reload();
   return reset;
 }
@@ -275,17 +295,17 @@ createPlayers = (players) => {
 
   console.log('Players: ', players);
 
-    if (playerForm) {
-      players.player1.name = document.getElementById('p1Name').value;
-      players.player1.email = document.getElementById('p1Email').value;
-      players.player2.name = document.getElementById('p2Name').value;
-      players.player2.email = document.getElementById('p2Email').value;
-      players.player1.gameIcon = document.querySelector('input[name="playerIcons"]:checked').value;
-    }
+  if (playerForm) {
+    players.player1.name = document.getElementById('p1Name').value;
+    players.player1.email = document.getElementById('p1Email').value;
+    players.player2.name = document.getElementById('p2Name').value;
+    players.player2.email = document.getElementById('p2Email').value;
+    players.player1.gameIcon = document.querySelector('input[name="playerIcons"]:checked').value;
+  }
   console.log(players.player1.gameIcon);
 
-    let startTime = new Date();
-    startTimestamp = Date.parse(startTime);
+  let startTime = new Date().toJSON().slice(0, 10).replace('T', ' ');
+  let startTimestamp = startTime;
     game = {
       player1name: players.player1.name,
       player1email: players.player1.email,
@@ -293,8 +313,19 @@ createPlayers = (players) => {
       player2email: players.player2.email,
       gameStarted: startTimestamp,
     }
-
     created = true;
+    if(created) {
+
+      setTimeout(() => {
+        modalMsg = '<p>' + game.player1name + ' make your move.</p>';
+        document.getElementById('modalMessage').innerHTML = modalMsg;
+        $('#gameModal').modal('show');
+      }, 300);
+      setTimeout(() => {
+        $('#gameModal').modal('hide');
+      }, 1500);
+    }
+
     return created;
 
 
@@ -313,6 +344,6 @@ function startGame() {
 }
 feather.replace({'stroke-width': 1});
 
-ScrollReveal().reveal('.game-container', { delay: 400 });
+ScrollReveal().reveal('.game-container, .delay', { delay: 400 });
 ScrollReveal().reveal('.game-info', { delay: 600 });
 // ScrollReveal().reveal('.item[data-feather]', { delay: 900 });

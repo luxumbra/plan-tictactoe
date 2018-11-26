@@ -38,11 +38,10 @@
               </div>
             </div>
           </form>
-          <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="who-won" aria-hidden="true">
+          <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="who-won" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-body">
-                  <p id="who-won"></p>
+                <div id="modalMessage" class="modal-body">
                 </div>
               </div>
             </div>
@@ -68,7 +67,7 @@
           <ol>
           <?php
           for ($i = 0; $i < $totalGames; $i++) {
-            $date = $games[$i]['gameStarted'];
+            $date = date('H:i, d/m/Y', strtotime($games[$i]['gameEnded']));
             echo '<li>
                     <dl>
                       <dt>Date played</dt>

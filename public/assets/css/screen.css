@@ -50,6 +50,11 @@ body .modal .modal-content p {
   font-size: 3rem;
   font-family: "Courgette", cursive;
 }
+/* line 47, ../../../sass/components/_page.scss */
+body .modal .modal-content p + p {
+  font-size: 2rem;
+  font-family: "Ubuntu", sans-serif;
+}
 
 /* line 1, ../../../sass/components/_game.scss */
 .game-container {
