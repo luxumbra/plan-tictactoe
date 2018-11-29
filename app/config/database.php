@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'scotchbox',
-	'dbdriver' => 'mysqli',
+	'dsn'	=> 'postgres://lyommgydrogaxf:a143b4c45625868319a7f57e4473cd08141b13bf41b9f8e54cf49a0891b0f51e@ec2-54-247-119-167.eu-west-1.compute.amazonaws.com:5432/deuk7l9jkuht04',
+	'hostname' => 'ec2-54-247-119-167.eu-west-1.compute.amazonaws.com',
+	'username' => 'lyommgydrogaxf',
+	'password' => 'a143b4c45625868319a7f57e4473cd08141b13bf41b9f8e54cf49a0891b0f51e',
+	'database' => 'deuk7l9jkuht04',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
