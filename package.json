@@ -4,6 +4,7 @@
   "description": "",
   "main": "public/assets/js/game.js",
   "scripts": {
+    "start": "",
     "test": ""
   },
   "repository": {
