@@ -4,9 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b613923d5f29f94db28b834b0f8afb5",
-    "content-hash": "e66fd5c3f8342ff9ed1f0d21aab6ef81",
+    "hash": "6e4d9fa3b9ae734263cd23cf960cc5b7",
+    "content-hash": "a8aee6167264ab70abc709c46be8809d",
     "packages": [
+        {
+            "name": "csanquer/pdo-service-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/csanquer/PdoServiceProvider.git",
+                "reference": "2b07fd86e145916a47723ca08452ada4dc675d58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/csanquer/PdoServiceProvider/zipball/2b07fd86e145916a47723ca08452ada4dc675d58",
+                "reference": "2b07fd86e145916a47723ca08452ada4dc675d58",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "~2.0",
+                "symfony/options-resolver": "~2.7|3.0.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Csanquer\\Silex\\PdoServiceProvider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Charles Sanquer",
+                    "email": "charles.sanquer@gmail.com"
+                }
+            ],
+            "description": "a PDO database service provider for silex",
+            "keywords": [
+                "database",
+                "pdo",
+                "service provider",
+                "silex"
+            ],
+            "time": "2018-01-03 09:49:51"
+        },
         {
             "name": "monolog/monolog",
             "version": "1.24.0",
@@ -629,6 +680,60 @@
             "time": "2018-11-26 14:04:48"
         },
         {
+            "name": "symfony/options-resolver",
+            "version": "v3.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "77f7252e377e1dc021ba74defe12a19a45bb1212"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/77f7252e377e1dc021ba74defe12a19a45bb1212",
+                "reference": "77f7252e377e1dc021ba74defe12a19a45bb1212",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2016-05-09 18:14:44"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.10.0",
             "source": {
@@ -1087,7 +1192,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "csanquer/pdo-service-provider": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
