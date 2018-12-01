@@ -39,6 +39,6 @@ class Game_model extends CI_Model {
     // exit('exit');
     $data['gameStarted'] = date('Y-m-d', strtotime($data['gameStarted']));
     return $this->db->insert('games', $data);
-    // redirect('/');
+    redirect('/');
   }
 }
