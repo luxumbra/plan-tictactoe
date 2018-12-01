@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql://bc7b4bd38fe150:a34b8a54@eu-cdbr-west-02.cleardb.net/heroku_442f80ec58cf6fb?reconnect=true',
+	'dsn'	=> '',
 	'hostname' => 'eu-cdbr-west-02.cleardb.net',
 	'username' => 'bc7b4bd38fe150',
 	'password' => 'a34b8a54',
