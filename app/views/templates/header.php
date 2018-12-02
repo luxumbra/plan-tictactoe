@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>tictactoe.plan.com</title>
+  <title>tictactoe.crafted</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -24,7 +24,7 @@
     <header class="container">
       <div class="row">
         <div class="col col-10 col-md-4 offset-md-8">
-          <h1>tictactoe.plan.com</h1>
+          <h1>tictactoe.crafted</h1>
         </div>
       </div>
     </header>
