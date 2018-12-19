@@ -18,12 +18,12 @@
  * --> in the game column, show player data for both players (games won,etc)
 
 */
-const playerForm = document.getElementById('playerData');
+var playerForm = document.getElementById('playerData');
 var winners = new Array();
 var player1Selections = new Array();
 var player2Selections = new Array();
-var timer;
-var numberOfPlayers = 2;
+// var timer;
+// var numberOfPlayers = 2;
 var currentPlayer = 0;
 var move = 0;
 var points1 = 0;
@@ -78,16 +78,16 @@ function processForCI(game) {
   });
 }
 
-function updateIcon(icon = 'plus') {
+function updateIcon(icon) {
   var playerIcon = '<i data-feather=\"' + icon + '\"></i>';
 
   return playerIcon;
 }
 
 function gamePlay(p1Name, p2Name, p1Icon) {
-  const gameContainer = document.getElementById('game');
-  const board = document.getElementById('board');
-  const grid = document.getElementById('grid');
+  // const gameContainer = document.getElementById('game');
+  // const board = document.getElementById('board');
+  // const grid = document.getElementById('grid');
   const gridItems = document.getElementsByClassName('item');
   const p1 = document.getElementById('p1-name');
   const p2 = document.getElementById('p2-name');
@@ -99,19 +99,19 @@ function gamePlay(p1Name, p2Name, p1Icon) {
     p1Icon = 'circle';
     p2Icon = 'x';
   }
-  console.log(p1, p2);
+  // console.log(p1, p2);
 
   p1.innerHTML = p1Name;
   p2.innerHTML = p2Name;
 
-  let counter = 1;
+  // let counter = 1;
   let itemId = 1;
   const gridCount = gridItems.length;
 
-  for(i = 0; i < gridCount; i++) {
+  for(let i = 0; i < gridCount; i++) {
     let item = document.getElementById(itemId);
     let iconWrapper = item.childNodes;
-    let icon = p1Icon;
+    // let icon = p1Icon;
 
     var handler = function (e) {
 
@@ -139,6 +139,7 @@ function gamePlay(p1Name, p2Name, p1Icon) {
         let endTimestamp = endTime;
         game.gameEnded = endTimestamp;
         var msg = '';
+
         if (currentPlayer == 0) {
 
           for(j = 0; j < gridItems.length; j++) {
@@ -184,7 +185,7 @@ function gamePlay(p1Name, p2Name, p1Icon) {
           item.removeEventListener('click', arguments.callee);
           // TODO: refactor as a reusable function
           setTimeout(() => {
-            modalMsg = '<p>' + game.player2name + ' make your move.</p>';
+            let modalMsg = '<p>' + game.player2name + ' make your move.</p>';
             document.getElementById('modalMessage').innerHTML = modalMsg;
             $('#gameModal').modal('show');
           }, 300);
@@ -195,7 +196,7 @@ function gamePlay(p1Name, p2Name, p1Icon) {
           currentPlayer = 0;
           item.removeEventListener('click', arguments.callee);
           setTimeout(() => {
-            modalMsg = '<p>' + game.player1name + ' make your move.</p>';
+            let modalMsg = '<p>' + game.player1name + ' make your move.</p>';
             document.getElementById('modalMessage').innerHTML = modalMsg;
             $('#gameModal').modal('show');
           }, 300);
@@ -207,7 +208,7 @@ function gamePlay(p1Name, p2Name, p1Icon) {
     }
 
     item.addEventListener('click', handler);
-    counter++;
+    // counter++;
     itemId++;
   }
 
@@ -253,7 +254,7 @@ function winningCombinations() {
   winners.push([3, 6, 9]);
 }
 
-checkWinner = () => {
+var checkWinner = () => {
   var win = false;
   var playerSelections = new Array();
 
@@ -265,14 +266,14 @@ checkWinner = () => {
 
   if(playerSelections.length >- size) {
     // check players selections against the winners array...
-    for(i = 0; i < winners.length; i++) {
+    for(let i = 0; i < winners.length; i++) {
       var sets = winners[i]; //winning combo
       var setFound = true;
 
-      for(r = 0; r < sets.length; r++) {
+      for(let r = 0; r < sets.length; r++) {
         var found = false;
 
-        for(s = 0; s < playerSelections.length; s++) {
+        for(let s = 0; s < playerSelections.length; s++) {
           if(sets[r] == playerSelections[s]) {
             found = true;
             break;
@@ -291,9 +292,9 @@ checkWinner = () => {
   }
   return win;
 }
-createPlayers = (players) => {
+var createPlayers = (players) => {
 
-  console.log('Players: ', players);
+  // console.log('Players: ', players);
 
   if (playerForm) {
     players.player1.name = document.getElementById('p1Name').value;
@@ -302,7 +303,7 @@ createPlayers = (players) => {
     players.player2.email = document.getElementById('p2Email').value;
     players.player1.gameIcon = document.querySelector('input[name="playerIcons"]:checked').value;
   }
-  console.log(players.player1.gameIcon);
+  // console.log(players.player1.gameIcon);
 
   let startTime = new Date().toJSON().slice(0, 10).replace('T', ' ');
   let startTimestamp = startTime;
@@ -317,7 +318,7 @@ createPlayers = (players) => {
     if(created) {
 
       setTimeout(() => {
-        modalMsg = '<p>' + game.player1name + ' make your move.</p>';
+        let modalMsg = '<p>' + game.player1name + ' make your move.</p>';
         document.getElementById('modalMessage').innerHTML = modalMsg;
         $('#gameModal').modal('show');
       }, 300);
@@ -334,11 +335,11 @@ createPlayers = (players) => {
 function startGame() {
   event.preventDefault();
   createPlayers(players);
-  console.log('The players: ', players);
+  // console.log('The players: ', players);
 
   if(created === true) {
     gamePlay(players.player1.name, players.player2.name, players.player1.gameIcon);
-    console.log('Game started...');
+    // console.log('Game started...');
 
   }
 }
