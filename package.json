@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/luxumbra/plan-tictactoe#readme",
   "dependencies": {
-
+    "lodash": ">=4.17.13",
+    "js-yaml": ">=3.13.1"
+  },
+  "devDependencies": {
+    "eslint-utils": ">=1.4.1"
   }
+
 }
